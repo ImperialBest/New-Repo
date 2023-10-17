@@ -84,5 +84,5 @@ function grid () {
 }
 
 // person
-// grid();
+grid();
 Question();
