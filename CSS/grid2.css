@@ -1,0 +1,16 @@
+body {
+    background-color: cornflowerblue;
+}
+.row {
+    display: table-row;
+  }
+  .row label {
+    display: table-cell;
+    padding: 2px;
+    text-align: right;
+  }
+  .row input {
+    display: table-cell;
+    padding: 2px;
+    text-align: left;
+  }
