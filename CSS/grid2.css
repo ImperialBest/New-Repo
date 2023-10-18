@@ -1,6 +1,13 @@
 body {
     background-color: cornflowerblue;
 }
+#therow {
+    color: burlywood;
+    display: table;
+    padding: 15px;
+    background-color: black;
+    border: solid 5px burlywood;
+  }
 .row {
     display: table-row;
   }
