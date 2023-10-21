@@ -1,12 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    <a href="HTML/ludo.html">open me</a>
-</body>
+    <link rel="stylesheet" href="../CSS/grid2.css" />
+    <!-- <script src="../JAVASCRIPT/grid2.js"></script> -->
+    <script>
+      function grid() {
+        userInput = document.querySelector("#userInput");
+        userColor1 = document.querySelector("#userFirstColor");
+        userColor2 = document.querySelector("#userSecondColor");
+        userGapSize = document.querySelector("#userGapSize");
+        userDiagonalColor = document.querySelector("#colorChanging");
+        squareSize = "60px";
+        gapSize = userGapSize.value;
+        lightColor = userColor1.value;
+        darkColor = userColor2.value;
+        diagColor = userDiagonalColor.value;
+        fullName = [];
+        colNo = userInput.value;
+        numberOfColumn = Math.floor(colNo);
+        boxCount = Math.pow(numberOfColumn, 2);
+        squareArray = [squareSize, squareSize, squareSize];
+        text = document.body;
+        userValue = userInput.value;
+        container = document.createElement("div");
+        container.style.display = "grid";
+
+        for (var j = 0; j < numberOfColumn; j++) {
+          fullName.push(squareSize);
+        }
+        res = fullName.join(" ");
+        container.style.gridTemplateRows = res;
+        container.style.gridTemplateColumns = res;
+        container.style.gap = gapSize;
+
+        for (var i = 1; i <= boxCount; i++) {
+          currentRow = Math.ceil(i / numberOfColumn);
+          elements = document.createElement("div");
+          if (numberOfColumn % 2 == 0) {
+            if (currentRow % 2 != 0) {
+              elements.style.backgroundColor =
+                i % 2 == 0 ? lightColor : darkColor;
+            } else {
+              elements.style.backgroundColor =
+                i % 2 == 0 ? darkColor : lightColor;
+            }
+          } else {
+            elements.style.backgroundColor =
+              i % 2 == 0 ? lightColor : darkColor;
+          }
+          container.appendChild(elements);
+        }
+        var children = container.children;
+        for (i = 0; i < numberOfColumn; i++) {
+          toChange = i + numberOfColumn * i;
+          children[toChange].style.backgroundColor = diagColor;
+        }
+        emptySpace = document.createElement("p");
+        emptySpace.innerText = " ";
+        text.appendChild(container);
+        text.appendChild(emptySpace);
+        num = 3.2;
+        // console.log(children.length)
+      }
+    </script>
+  </head>
+  <body>
+    <p>Hello</p>
+    <form action="" id="therow">
+      <div class="row">
+        <label for="userInput">Number Of Columns:</label>
+        <input
+          type="number"
+          id="userInput"
+          value="8"
+          placeholder="Enter the number of columns you want"
+        />
+        <br /><br />
+      </div>
+      <div class="row">
+        <label for="userFirstColor">First Color:</label>
+        <input
+          type="text"
+          id="userFirstColor"
+          value="burlywood"
+          placeholder="Enter first color"
+        />
+        <br /><br />
+      </div>
+      <div class="row">
+        <label for="userSecondColor">Second Color:</label>
+        <input
+          type="text"
+          id="userSecondColor"
+          value="brown"
+          placeholder="Enter second color"
+        />
+        <br /><br />
+      </div>
+      <div class="row">
+        <label for="userGapSize">Gap Size:</label>
+        <input
+          type="text"
+          id="userGapSize"
+          value="1px"
+          placeholder="Enter gap size"
+        />
+        <br /><br />
+      </div>
+      <div class="row">
+        <label for="colorChanging">Change Diagonal Color:</label>
+        <input
+          type="text"
+          id="colorChanging"
+          value="darkred"
+          placeholder="Diagonal Color"
+        />
+        <br /><br />
+      </div>
+    </form>
+    <button onclick="grid()">Make Board</button>
+    <br /><br /><br /><br /><br />
+  </body>
 </html>
